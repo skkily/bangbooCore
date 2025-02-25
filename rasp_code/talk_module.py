@@ -10,6 +10,7 @@ class TalkModule:
         self.__cond = threading.Condition()
         self.__speech_data = []
         self.__msg_text = ""
+        self.__ques_text = ""
 
         self.__stop_event = threading.Event()
         self.__thread = threading.Thread(target=self.__run)
@@ -30,6 +31,10 @@ class TalkModule:
                     # print('响应内容:', response.text)
                     try:
                         msg_text = json.loads(response.text)
+                        if 'user' in msg_text:
+                            ques_text = msg_text["user"]
+                            self.__ques_text = ques_text.strip()
+                            self.__msg.put(f"ques_get{self.__ques_text}")
                         if 'msg' in msg_text:
                             msg_text = msg_text["msg"]
                             self.__msg_text = msg_text.strip()

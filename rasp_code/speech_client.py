@@ -27,7 +27,7 @@ import queue
 import os
 
 AUDIO_FILE_PATH = "/tmp/speech_client" #音频文件保存路径
-NET_ADDRESS = "http://IP地址:端口/wav_test"
+NET_ADDRESS = "http://服务器IP地址:端口/wav_test"
 
 def mkDir(filePath):
     os.makedirs(filePath, exist_ok=True)
@@ -55,6 +55,9 @@ if __name__ == "__main__":
         if msg == "speech_skip":
             print(f"speech skip")
             tts.normalSpeak()
+            pass
+        if msg[0:8] == "ques_get":
+            print(f"question:{msg[8:]}")
             pass
         if msg[0:8] == "talk_get":
             print(f"speech play")
