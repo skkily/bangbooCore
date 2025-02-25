@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Exec=gnome-terminal --window --maximize -- bash -c "cd /home/user/speech_client; python speech_client.py;"
+Categories=Application;Development;
+StartupNotify=true
